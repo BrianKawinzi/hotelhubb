@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotelhubb/pages/components/normalTF.dart';
 import 'package:hotelhubb/pages/components/passwordTF.dart';
 import 'package:hotelhubb/pages/components/my_button.dart';
+import 'package:hotelhubb/pages/components/square_tile.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -95,11 +96,71 @@ class LoginScreen extends StatelessWidget {
                   buttonText: "Login",
                 ),
 
+                const SizedBox(height: 50),
+
                 //or continue with
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'or continue with',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 50),
 
                 //google + apple sign in buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //google button
+                    SquareTile(imagepath: 'lib/assets/google.png'),
+
+                    SizedBox(width: 25),
+
+                    //apple button
+                    SquareTile(imagepath: 'lib/assets/apple.png'),
+                  ],
+                ),
+                const SizedBox(height: 10),
 
                 //not a member register now
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account?',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                    const SizedBox(width: 4),
+                    const Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
