@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelhubb/pages/login_page.dart';
+import 'package:hotelhubb/pages/registration_page.dart';
 import 'package:hotelhubb/pages/splash_screen.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/splash': (context) => SplashScreen(),
         '/login': (context) => LoginScreen(),
+        '/register':(context) => RegistrationPage(),
       },
     );
   }
