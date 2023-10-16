@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelhubb/pages/components/my_button.dart';
 import 'package:hotelhubb/pages/components/normalTF.dart';
@@ -13,7 +14,12 @@ class LoginScreen extends StatelessWidget {
   final passwordController = TextEditingController();
 
   //Sign user in method
-  void signUserIn() {}
+  void signUserIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text, 
+      password: passwordController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
