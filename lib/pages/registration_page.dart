@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotelhubb/pages/components/my_button.dart';
 import 'package:hotelhubb/pages/components/normalTF.dart';
 import 'package:hotelhubb/pages/components/passwordTF.dart';
@@ -13,8 +14,35 @@ class RegistrationPage extends StatelessWidget {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  //firebase Authentication instance
+  final _auth = FirebaseAuth.instance;
+
   //sing up method
-  void SignUserUp() {}
+  void SignUserUp(BuildContext context) async {
+    try {
+      final newUser = await _auth.createUserWithEmailAndPassword(
+        email: emailController.text, 
+        password: passwordController.text,
+      );
+
+      if (newUser != null) {
+        Navigator.of(context).pushNamed('/login');
+      }
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text('Registration Error'),
+        // Use e.message to access the error message
+      );
+    },
+  );
+}
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +66,7 @@ class RegistrationPage extends StatelessWidget {
                 const SizedBox(height: 25),
 
                 //username textfield
-                normalTF(
-                  controller: usernameController, 
-                  hintText: 'Username', 
-                  obscureText: false
-                ),
+               
 
                 const SizedBox(height: 10),
 
@@ -74,7 +98,9 @@ class RegistrationPage extends StatelessWidget {
 
                 //register button
                 MyButton(
-                  onTap: SignUserUp, 
+                  onTap: () {
+                    SignUserUp(context);
+                  }, 
                   buttonText: "Agree and Register"
                 ),
 
